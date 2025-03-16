@@ -84,9 +84,3 @@ curl -X GET http://localhost:8080/api/{shortened_id}
 - Kafka handles large traffic loads asynchronously.
 - Horizontal scaling with Docker and Kubernetes is supported.
 
-## Contributing
-Contributions are welcome. Please fork the repository and submit a pull request.
-
-## License
-This project is licensed under the MIT License.
-
