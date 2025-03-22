@@ -35,7 +35,7 @@ This project is a high-performance URL shortener built using **Spring Boot**, **
 
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/yourusername/url-shortener.git
+git clone https://github.com/sarihammad/url-shortener.git
 cd url-shortener
 ```
 
