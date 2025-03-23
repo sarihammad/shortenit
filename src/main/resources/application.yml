@@ -7,12 +7,12 @@ spring:
       exclude: logs/**
 
   application:
-    name: url-shortener
+    name: shortenit
 
   data:
     cassandra:
-      keyspace-name: urlshortener
-      contact-points: cassandra
+      keyspace-name: shortenit
+      contact-points: localhost
       port: 9042
       local-datacenter: datacenter1
       schema-action: CREATE_IF_NOT_EXISTS
@@ -25,7 +25,7 @@ spring:
   kafka:
     bootstrap-servers: kafka:9092
     consumer:
-      group-id: url-shortener-group
+      group-id: shortenit-group
       auto-offset-reset: earliest
     producer:
       retries: 3
@@ -35,3 +35,35 @@ logging:
   level:
     root: INFO
     org.springframework.data.redis: DEBUG
+    org.springframework.data.cassandra.core: DEBUG
+    
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+  data:
+    cassandra:
+      contact-points: cassandra
+      port: 9042
+      keyspace-name: shortenit
+      local-datacenter: datacenter1
+      schema-action: CREATE_IF_NOT_EXISTS
+
+  kafka:
+    bootstrap-servers: kafka:9092
+
+  redis:
+    host: redis
+    port: 6379
