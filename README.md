@@ -35,8 +35,8 @@ This project is a high-performance URL shortener built using **Spring Boot**, **
 
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/sarihammad/url-shortener.git
-cd url-shortener
+git clone https://github.com/sarihammad/shortenit.git
+cd shortenit
 ```
 
 ### 2. Start Dependencies using Docker
@@ -75,7 +75,7 @@ curl -X POST http://localhost:8080/api/shorten -H "Content-Type: application/jso
 
 #### Retrieve Original URL
 ```sh
-curl -X GET http://localhost:8080/api/{shortened_id}
+curl -X GET http://localhost:8080/api/v1/{shortened_id}
 ```
 
 ## Scaling Strategy
