@@ -82,5 +82,5 @@ curl -X GET http://localhost:8080/api/v1/{shortened_id}
 - Cassandra is used with **consistent hashing** to distribute data evenly.
 - Redis caches popular URLs to minimize database hits.
 - Kafka handles large traffic loads asynchronously.
-- Horizontal scaling with Docker and Kubernetes is supported.
+- Horizontal scaling with Docker.
 
