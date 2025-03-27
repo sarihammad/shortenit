@@ -1,4 +1,4 @@
-# ShortenIt: URL Shortener with Distributed Hashing
+# ShortenIt: Scalable URL Shortener with Distributed Hashing, Redis Caching, Kafka Queues
 
 ## Overview
 This project is a high-performance URL shortener built using **Spring Boot**, **Cassandra**, **Redis**, and **Kafka**. It provides fast lookups and high availability, leveraging **consistent hashing** for efficient load distribution.
