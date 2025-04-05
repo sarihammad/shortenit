@@ -1,37 +1,49 @@
-# ShortenIt: Scalable URL Shortener with Distributed Hashing, Redis Caching, Kafka Queues
+# ShortenIt – Scalable URL Shortener with Distributed Hashing, Redis Caching, and Kafka
 
-## Overview
-This project is a high-performance URL shortener built using **Spring Boot**, **Cassandra**, **Redis**, and **Kafka**. It provides fast lookups and high availability, leveraging **consistent hashing** for efficient load distribution.
+**ShortenIt** is a high-performance, production-grade URL shortening service built to handle high traffic with speed, resilience, and fault tolerance.  
+Designed using a distributed systems approach, it combines **Spring Boot**, **Cassandra**, **Kafka**, and **Redis** to ensure scalable storage, fast lookups, and asynchronous processing.
 
-## Features
-- Shortens long URLs with unique identifiers.
-- Uses **consistent hashing** to distribute data across multiple nodes.
-- Implements **Bloom Filters** to prevent duplicate URL generation.
-- Stores mappings in **Cassandra** for scalability and fault tolerance.
-- Uses **Redis** for caching frequently accessed URLs.
-- Processes high traffic loads efficiently using **Kafka**.
+---
+
+## Key Features
+
+- Generates short, unique identifiers for long URLs
+- Implements **consistent hashing** to evenly distribute data across nodes
+- Uses a **Bloom filter** to prevent duplicate entries
+- Caches frequent lookups with **Redis** for ultra-fast performance
+- Leverages **Kafka** for event-driven, high-throughput processing
+- Stores persistent mappings in **Cassandra** for scalability and durability
+- Designed to support **10k+ QPS** with low latency
+
+---
+
+## Architecture Overview
+
+| Component | Role |
+|----------|------|
+| **Shortener Service** | Accepts URLs, generates unique short links |
+| **Redis Cache** | Stores hot keys for fast retrieval |
+| **Cassandra DB** | Durable key-value storage using consistent hashing |
+| **Bloom Filter** | Prevents duplicates without hitting the DB |
+| **Kafka Queue** | Handles async processing for high volume input |
+| **Docker Compose** | Manages multi-service dev environment |
+
+---
 
 ## Tech Stack
-- **Backend:** Spring Boot
-- **Database:** Cassandra (for persistent storage)
-- **Cache:** Redis (for fast lookups)
-- **Message Queue:** Kafka (for handling high traffic)
 
-## Architecture
-1. **URL Shortening Service**: Generates short URLs and stores them in Cassandra.
-2. **Consistent Hashing**: Distributes data across multiple Cassandra nodes.
-3. **Bloom Filter**: Prevents duplicate URL entries before inserting into the database.
-4. **Redis Cache**: Speeds up lookups by caching frequently accessed URLs.
-5. **Kafka**: Handles event-driven processing for high throughput.
+| Layer | Tools |
+|-------|-------|
+| **Backend** | Java 17, Spring Boot |
+| **Storage** | Cassandra |
+| **Caching** | Redis |
+| **Messaging** | Apache Kafka |
+| **Infra** | Docker, Docker Compose |
+| **Monitoring (Planned)** | Prometheus + Grafana |
 
-## Prerequisites
-- Docker & Docker Compose
-- Java 17+
-- Apache Kafka
-- Apache Cassandra
-- Redis
+---
 
-## Setup Instructions
+## ⚙️ Setup & Run Locally
 
 ### 1. Clone the Repository
 ```sh
