@@ -1,6 +1,7 @@
 # ShortenIt – Scalable URL Shortener with Distributed Hashing, Redis Caching, and Kafka
 
 **ShortenIt** is a high-performance, production-grade URL shortening service built to handle high traffic with speed, resilience, and fault tolerance.  
+
 Designed using a distributed systems approach, it combines **Spring Boot**, **Cassandra**, **Kafka**, and **Redis** to ensure scalable storage, fast lookups, and asynchronous processing.
 
 ---
