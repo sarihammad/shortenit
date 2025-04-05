@@ -8,57 +8,61 @@ Designed using a distributed systems approach, it combines **Spring Boot**, **Ca
 
 ## Key Features
 
-- Generates short, unique identifiers for long URLs
-- Implements **consistent hashing** to evenly distribute data across nodes
-- Uses a **Bloom filter** to prevent duplicate entries
-- Caches frequent lookups with **Redis** for ultra-fast performance
-- Leverages **Kafka** for event-driven, high-throughput processing
-- Stores persistent mappings in **Cassandra** for scalability and durability
-- Designed to support **10k+ QPS** with low latency
+- Generates short, unique identifiers for long URLs  
+- Implements **consistent hashing** to evenly distribute data across nodes  
+- Uses a **Bloom filter** to prevent duplicate entries  
+- Caches frequent lookups with **Redis** for ultra-fast performance  
+- Leverages **Kafka** for event-driven, high-throughput processing  
+- Stores persistent mappings in **Cassandra** for scalability and durability  
+- Designed to support **10k+ QPS** with low latency  
 
 ---
 
 ## Architecture Overview
 
-| Component | Role |
-|----------|------|
-| **Shortener Service** | Accepts URLs, generates unique short links |
-| **Redis Cache** | Stores hot keys for fast retrieval |
-| **Cassandra DB** | Durable key-value storage using consistent hashing |
-| **Bloom Filter** | Prevents duplicates without hitting the DB |
-| **Kafka Queue** | Handles async processing for high volume input |
-| **Docker Compose** | Manages multi-service dev environment |
+| Component           | Role                                           |
+|---------------------|------------------------------------------------|
+| Shortener Service   | Accepts URLs, generates short links            |
+| Redis Cache         | Stores hot keys for fast retrieval             |
+| Cassandra DB        | Durable key-value storage w/ consistent hashing |
+| Bloom Filter        | Prevents duplicates before DB writes           |
+| Kafka Queue         | Handles async processing and traffic spikes    |
+| Docker Compose      | Spins up the full stack for local dev          |
 
 ---
 
 ## Tech Stack
 
-| Layer | Tools |
-|-------|-------|
-| **Backend** | Java 17, Spring Boot |
-| **Storage** | Cassandra |
-| **Caching** | Redis |
-| **Messaging** | Apache Kafka |
-| **Infra** | Docker, Docker Compose |
-| **Monitoring (Planned)** | Prometheus + Grafana |
+| Layer           | Tools                          |
+|----------------|----------------------------------|
+| Backend         | Java 17, Spring Boot             |
+| Storage         | Cassandra                        |
+| Caching         | Redis                            |
+| Messaging       | Apache Kafka                     |
+| Containerization| Docker, Docker Compose           |
+| Monitoring      | Prometheus + Grafana (planned)   |
 
 ---
 
-## ⚙️ Setup & Run Locally
+## ⚙Setup & Run Locally
 
-### 1. Clone the Repository
-```sh
-git clone https://github.com/sarihammad/shortenit.git
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/sarihammad/shortenit.git  
 cd shortenit
 ```
 
-### 2. Start Dependencies using Docker
-```sh
-docker-compose up -d
+### 2. Start Dependencies
+
+```bash
+docker compose up -d
 ```
 
-### 3. Configure Environment Variables
-Modify `application.yml` or `application.properties`:
+### 3. Configure Spring Application
+
+Edit `application.yml`:
+
 ```yaml
 spring:
   data:
@@ -68,32 +72,68 @@ spring:
       keyspace-name: url_shortener
       username: cassandra
       password: cassandra
-    redis:
-      host: redis
-      port: 6379
+  redis:
+    host: redis
+    port: 6379
+
 kafka:
   bootstrap-servers: kafka:9092
 ```
 
-### 4. Start the Application
-```sh
+### 4. Run the App
+
+```bash
 ./mvnw spring-boot:run
 ```
 
-### 5. Test API Endpoints
-#### Shorten a URL
-```sh
-curl -X POST http://localhost:8080/api/shorten -H "Content-Type: application/json" -d '{"url": "https://example.com"}'
+---
+
+## API Testing
+
+### Shorten a URL
+
+```bash
+curl -X POST http://localhost:8080/api/shorten \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com"}'
 ```
 
-#### Retrieve Original URL
-```sh
+### Retrieve Original URL
+
+```bash
 curl -X GET http://localhost:8080/api/v1/{shortened_id}
 ```
 
-## Scaling Strategy
-- Cassandra is used with **consistent hashing** to distribute data evenly.
-- Redis caches popular URLs to minimize database hits.
-- Kafka handles large traffic loads asynchronously.
-- Horizontal scaling with Docker.
+---
 
+## Scaling Strategy
+
+- Cassandra uses **consistent hashing** for horizontal scalability  
+- Redis caches frequently accessed URLs for high-speed lookup  
+- Kafka handles message queues for async processing at scale  
+- Fully containerized for easy deployment and orchestration
+
+---
+
+## Why This Project?
+
+**ShortenIt** demonstrates:
+- High-traffic system design  
+- Use of consistent hashing in production  
+- Redis + Kafka integration for latency and throughput  
+- Real-world backend engineering principles  
+- Microservice and distributed systems best practices
+
+---
+
+## Status
+
+MVP complete and running locally  
+Planned: Kubernetes or Swarm deployment  
+Planned: Observability with Prometheus + Grafana  
+
+---
+
+## GitHub
+
+[https://github.com/sarihammad/shortenit](https://github.com/sarihammad/shortenit)
