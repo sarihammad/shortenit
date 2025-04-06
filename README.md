@@ -1,4 +1,4 @@
-# ShortenIt – Scalable URL Shortener with Distributed Hashing, Redis Caching, and Kafka
+# ShortenIt – Scalable URL Shortener
 
 **ShortenIt** is a high-performance, production-grade URL shortening service built to handle high traffic with speed, resilience, and fault tolerance.  
 
@@ -113,27 +113,3 @@ curl -X GET http://localhost:8080/api/v1/{shortened_id}
 - Kafka handles message queues for async processing at scale  
 - Fully containerized for easy deployment and orchestration
 
----
-
-## Why This Project?
-
-**ShortenIt** demonstrates:
-- High-traffic system design  
-- Use of consistent hashing in production  
-- Redis + Kafka integration for latency and throughput  
-- Real-world backend engineering principles  
-- Microservice and distributed systems best practices
-
----
-
-## Status
-
-MVP complete and running locally  
-Planned: Kubernetes or Swarm deployment  
-Planned: Observability with Prometheus + Grafana  
-
----
-
-## GitHub
-
-[https://github.com/sarihammad/shortenit](https://github.com/sarihammad/shortenit)
