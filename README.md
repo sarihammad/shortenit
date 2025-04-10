@@ -1,4 +1,4 @@
-# ShortenIt – Scalable URL Shortener
+# ShortenIt
 
 **ShortenIt** is a high-performance, production-grade URL shortening service built to handle high traffic with speed, resilience, and fault tolerance.  
 
